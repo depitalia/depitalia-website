@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 
-const APP_URL = 'https://dep-italia.vercel.app' // ← Cambia con l'URL reale della tua app
+const APP_URL = 'https://app.depitalia.com'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)

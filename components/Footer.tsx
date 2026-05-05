@@ -1,6 +1,6 @@
 'use client'
 
-const APP_URL = 'https://dep-italia.vercel.app' // ← Cambia con l'URL reale
+const APP_URL = 'https://app.depitalia.com'
 
 export default function Footer() {
   const year = new Date().getFullYear()

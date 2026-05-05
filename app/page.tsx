@@ -1,9 +1,7 @@
-'use client'
-
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-const APP_URL = 'https://dep-italia.vercel.app'
+const APP_URL = 'https://app.depitalia.com'
 const WHOP_BASIC_URL = 'https://whop.com/checkout/plan_DzCTowmABGQTI'
 const WHOP_PREMIUM_URL = 'https://whop.com/checkout/plan_jbh5coZeelTmS'
 
