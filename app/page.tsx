@@ -2,7 +2,8 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 const APP_URL = 'https://dep-italia.vercel.app'
-const WHOP_URL = 'https://whop.com/dep-italia'
+const WHOP_BASIC_URL = 'https://whop.com/checkout/plan_DzCTowmABGQTI'
+const WHOP_PREMIUM_URL = 'https://whop.com/checkout/plan_jbh5coZeelTmS'
 
 export default function Home() {
   return (
@@ -258,7 +259,7 @@ export default function Home() {
                   <li>✓ Guida con esempi</li>
                   <li className="muted">— Senza Digital Legacy</li>
                 </ul>
-                <a href={WHOP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-navy" style={{width: '100%'}}>
+                <a href={WHOP_BASIC_URL} target="_blank" rel="noopener noreferrer" className="btn btn-navy" style={{width: '100%'}}>
                   Sblocca Basic
                 </a>
               </div>
@@ -280,7 +281,7 @@ export default function Home() {
                   <li>✓ <strong>4 dispense Premium</strong></li>
                   <li>✓ <strong>1 nuova dispensa al mese</strong></li>
                 </ul>
-                <a href={WHOP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{width: '100%'}}>
+                <a href={WHOP_PREMIUM_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{width: '100%'}}>
                   Sblocca Premium
                 </a>
               </div>
