@@ -1,9 +1,8 @@
-'use client'
-
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-const APP_URL = 'https://dep-italia.vercel.app' // ← Cambia con l'URL reale
+const APP_URL = 'https://dep-italia.vercel.app'
+const WHOP_URL = 'https://whop.com/dep-italia'
 
 export default function Home() {
   return (
@@ -219,6 +218,9 @@ export default function Home() {
               <p className="section-sub" style={{margin: '0 auto'}}>
                 Scegli una volta, accedi a vita ai contenuti del piano. Trasparenza totale.
               </p>
+              <div className="whop-trust">
+                🔒 Pagamenti gestiti da <strong>Whop</strong> · Provider certificato · Pagamento sicuro SSL
+              </div>
             </div>
 
             <div className="piani-grid">
@@ -256,7 +258,7 @@ export default function Home() {
                   <li>✓ Guida con esempi</li>
                   <li className="muted">— Senza Digital Legacy</li>
                 </ul>
-                <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-navy" style={{width: '100%'}}>
+                <a href={WHOP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-navy" style={{width: '100%'}}>
                   Sblocca Basic
                 </a>
               </div>
@@ -278,7 +280,7 @@ export default function Home() {
                   <li>✓ <strong>4 dispense Premium</strong></li>
                   <li>✓ <strong>1 nuova dispensa al mese</strong></li>
                 </ul>
-                <a href={APP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{width: '100%'}}>
+                <a href={WHOP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{width: '100%'}}>
                   Sblocca Premium
                 </a>
               </div>
@@ -633,6 +635,17 @@ export default function Home() {
 
         /* ─── PIANI ─── */
         .piani { background: var(--cream); }
+        .whop-trust {
+          display: inline-block;
+          margin-top: 22px;
+          font-size: 12px;
+          color: var(--muted);
+          background: rgba(255,255,255,0.7);
+          border: 1px solid var(--border);
+          padding: 8px 18px;
+          border-radius: 20px;
+        }
+        .whop-trust strong { color: var(--navy); }
         .piani-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
