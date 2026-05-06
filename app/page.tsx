@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -8,6 +9,19 @@ const WHOP_BASIC_URL = 'https://whop.com/checkout/plan_DzCTowmABGQTI'
 const WHOP_PREMIUM_URL = 'https://whop.com/checkout/plan_jbh5coZeelTmS'
 
 export default function Home() {
+  const [modalPiano, setModalPiano] = useState<'basic' | 'premium' | null>(null)
+
+  function chiudiModal() {
+    setModalPiano(null)
+  }
+
+  function vaiAlCheckout() {
+    if (!modalPiano) return
+    const url = modalPiano === 'basic' ? WHOP_BASIC_URL : WHOP_PREMIUM_URL
+    window.open(url, '_blank', 'noopener,noreferrer')
+    setModalPiano(null)
+  }
+
   return (
     <>
       <Header />
@@ -261,9 +275,9 @@ export default function Home() {
                   <li>✓ Guida con esempi</li>
                   <li className="muted">— Senza Digital Legacy</li>
                 </ul>
-                <a href={WHOP_BASIC_URL} target="_blank" rel="noopener noreferrer" className="btn btn-navy" style={{width: '100%'}}>
+                <button onClick={() => setModalPiano('basic')} className="btn btn-navy" style={{width: '100%', cursor: 'pointer'}}>
                   Sblocca Basic
-                </a>
+                </button>
               </div>
 
               {/* PREMIUM */}
@@ -283,9 +297,9 @@ export default function Home() {
                   <li>✓ <strong>4 dispense Premium</strong></li>
                   <li>✓ <strong>1 nuova dispensa al mese</strong></li>
                 </ul>
-                <a href={WHOP_PREMIUM_URL} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{width: '100%'}}>
+                <button onClick={() => setModalPiano('premium')} className="btn btn-gold" style={{width: '100%', cursor: 'pointer'}}>
                   Sblocca Premium
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -390,6 +404,111 @@ export default function Home() {
 
       </main>
       <Footer />
+
+      {/* MODAL PRE-CHECKOUT (sito vetrina) */}
+      {modalPiano && (
+        <div className="checkout-modal-overlay" onClick={chiudiModal}>
+          <div className="checkout-modal-box" onClick={(e) => e.stopPropagation()}>
+            <div style={{fontSize: 48, marginBottom: 12, textAlign: 'center'}}>⚠️</div>
+            <h3 style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: 24,
+              fontWeight: 600,
+              color: 'var(--navy)',
+              marginBottom: 14,
+              textAlign: 'center',
+            }}>
+              Importante prima del pagamento
+            </h3>
+
+            <p style={{fontSize: 14, color: 'var(--text)', lineHeight: 1.7, marginBottom: 16, textAlign: 'center'}}>
+              Per attivare automaticamente il tuo piano <strong>{modalPiano === 'basic' ? 'Basic' : 'Premium'}</strong>:
+            </p>
+
+            <ol style={{fontSize: 13, color: 'var(--text)', lineHeight: 1.8, marginBottom: 18, paddingLeft: 22}}>
+              <li>Registrati prima sull&apos;app DEP Italia (gratis, 30 secondi)</li>
+              <li>Poi paga con la <strong>stessa email</strong> usata per la registrazione</li>
+              <li>Il piano si attiverà automaticamente in pochi secondi</li>
+            </ol>
+
+            <div style={{
+              background: '#fff8f0',
+              border: '1px solid #f5c07a',
+              borderRadius: 8,
+              padding: '10px 14px',
+              fontSize: 12,
+              color: '#7a4a00',
+              lineHeight: 1.6,
+              marginBottom: 20,
+            }}>
+              ⚠️ Se userai un&apos;email diversa per pagare, il piano <strong>non si attiverà automaticamente</strong> e dovrai contattarci per sbloccarlo.
+            </div>
+
+            <div style={{display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap'}}>
+              <a
+                href={APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline"
+                style={{padding: '12px 20px', fontSize: 13}}
+              >
+                Registrati prima →
+              </a>
+              <button
+                onClick={vaiAlCheckout}
+                className="btn btn-gold"
+                style={{padding: '12px 20px', fontSize: 13, cursor: 'pointer'}}
+              >
+                Sono già registrato, paga →
+              </button>
+            </div>
+
+            <button
+              onClick={chiudiModal}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--muted)',
+                fontSize: 12,
+                marginTop: 14,
+                cursor: 'pointer',
+                width: '100%',
+                textAlign: 'center',
+                fontFamily: 'inherit',
+              }}
+            >
+              Annulla
+            </button>
+          </div>
+
+          <style jsx>{`
+            .checkout-modal-overlay {
+              position: fixed;
+              inset: 0;
+              background: rgba(15, 30, 46, 0.75);
+              backdrop-filter: blur(4px);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 1000;
+              padding: 20px;
+              animation: fadeIn 0.2s ease-out;
+            }
+            .checkout-modal-box {
+              background: #fff;
+              border-radius: 14px;
+              padding: 32px 30px;
+              max-width: 480px;
+              width: 100%;
+              box-shadow: 0 24px 64px rgba(0,0,0,0.32);
+            }
+            @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(10px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+          `}</style>
+        </div>
+      )}
 
       <style>{`
         /* ─── HERO ─── */
